@@ -2,8 +2,11 @@ package database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+import beans.Album;
 
 public class DataBase {
 	
@@ -43,5 +46,16 @@ public class DataBase {
 	
 	public void close() {
 		if (co != null) try {co.close();} catch (Exception e) {}
+	}
+	
+	public void newAlbum(Album album) throws SQLException {
+		String sql = "INSERT INTO albums ";
+		sql += "(title, date) ";
+		sql += "values (?, ?) ";
+		
+		PreparedStatement ps = co.prepareStatement(sql);
+		ps.setString(1, album.getTitle());
+		ps.setDate(2, album.getDate());
+		ps.executeUpdate();
 	}
 }
