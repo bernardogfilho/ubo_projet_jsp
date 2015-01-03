@@ -28,6 +28,9 @@ public class Test {
 		a.setDate(sqlDate);
 		
 		db.newAlbum(a);
+		a.setId(10);
+		a.setTitle("My vocations 2016");
+		db.updateAlbum(a);
 
 	}
 

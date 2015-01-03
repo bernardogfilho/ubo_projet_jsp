@@ -58,4 +58,20 @@ public class DataBase {
 		ps.setDate(2, album.getDate());
 		ps.executeUpdate();
 	}
+	
+	public void updateAlbum(Album album) throws SQLException {
+		String sql = "UPDATE albums ";
+		sql += "SET title = ?, " ;
+		sql += "date = ? ";
+		sql += "WHERE id = ?";
+		
+		System.out.println(sql);
+		
+		PreparedStatement ps = co.prepareStatement(sql);
+		ps.setString(1, album.getTitle());
+		ps.setDate(2, album.getDate());
+		ps.setInt(3, album.getId());
+		System.out.println(ps.toString());
+		ps.executeUpdate();
+	}
 }
