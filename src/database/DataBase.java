@@ -65,13 +65,19 @@ public class DataBase {
 		sql += "date = ? ";
 		sql += "WHERE id = ?";
 		
-		System.out.println(sql);
-		
 		PreparedStatement ps = co.prepareStatement(sql);
 		ps.setString(1, album.getTitle());
 		ps.setDate(2, album.getDate());
 		ps.setInt(3, album.getId());
 		System.out.println(ps.toString());
+		ps.executeUpdate();
+	}
+	
+	public void deleteAlbum(int id) throws SQLException {
+		String sql = "DELETE FROM albums WHERE id = ?";
+		
+		PreparedStatement ps = co.prepareStatement(sql);
+		ps.setInt(1, id);
 		ps.executeUpdate();
 	}
 }

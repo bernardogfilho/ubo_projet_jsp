@@ -31,6 +31,8 @@ public class Test {
 		a.setId(10);
 		a.setTitle("My vocations 2016");
 		db.updateAlbum(a);
+		
+		db.deleteAlbum(3);
 
 	}
 
