@@ -11,15 +11,15 @@
 <%@ page import="database.*" %>
 <%@ page import="beans.*" %>
 <%@page import="java.util.ArrayList"%>
-
+<% String id = request.getParameter("id"); %>
 <jsp:useBean id="album" class="database.AlbumDAO"></jsp:useBean>
 
 <jsp:include page="/shared/header.jsp"></jsp:include>
+<c:set var="album" value="${album.find(param.id)}"/>
 
 	<div class="row">
 		<div class="small-12 columns">
-			<c:set var="album" value="${album.find(22)}"/>
-				${album.title}
+			${album.title}
 		</div>
 	</div>
 
