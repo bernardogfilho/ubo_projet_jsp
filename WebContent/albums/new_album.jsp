@@ -6,20 +6,9 @@
 <%@ page import="beans.*" %>
 
 <jsp:useBean id="album" class="beans.Album"></jsp:useBean>
+<jsp:useBean id="albumDAO" class="database.AlbumDAO"></jsp:useBean>
 
 <%
-
-	String title = request.getParameter("title");
-	String date = request.getParameter("date");
-	
-	if (title != null && date != null) {
-		album.setTitle(title);
-		album.setStringDate(date);
-		DataBase db = new DataBase();
-		db.open();
-		db.newAlbum(album);
-		db.close();
-	}
 
 %>
 
@@ -27,7 +16,7 @@
 
 	<div class="row">
 		<div class="small-12 medium-6 small-centered columns">
-			<form method="post" action="new_album.jsp">
+			<form method="post" action="create.jsp">
 				<label>Titre
 					<input type="text" name="title">
 				</label>

@@ -19,21 +19,13 @@
 		
 		  <section class="top-bar-section">
 		    <!-- Right Nav Section -->
-		    <!-- <ul class="right">
-		      <li class="active"><a href="#">Right Button Active</a></li>
-		      <li class="has-dropdown">
-		        <a href="#">Right Button Dropdown</a>
-		        <ul class="dropdown">
-		          <li><a href="#">First link in dropdown</a></li>
-		          <li class="active"><a href="#">Active link in dropdown</a></li>
-		        </ul>
-		      </li>
-		    </ul> -->
+		    <ul class="right">
+   		      <li><a href="/ihm_jsp/albums/new_album.jsp" class="button">Créer un nouvel album</a></li>
+		    </ul>
 		
 		    <!-- Left Nav Section -->
 		    <ul class="left">
 		      <li><a href="/ihm_jsp/albums">Albums</a></li>
-		      <li><a href="/ihm_jsp/albums/new_album.jsp">Nouvel Album</a></li>
 		    </ul>
 		  </section>
 		</nav>

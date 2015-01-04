@@ -18,11 +18,12 @@ public class AlbumDAO extends DataBase {
 		String sql = "INSERT INTO albums ";
 		sql += "(title, date) ";
 		sql += "values (?, ?) ";
-		
+		open();
 		PreparedStatement ps = co.prepareStatement(sql);
 		ps.setString(1, album.getTitle());
 		ps.setDate(2, album.getDate());
 		ps.executeUpdate();
+		close();
 	}
 	
 	public void update(Album album) throws SQLException {
@@ -41,13 +42,14 @@ public class AlbumDAO extends DataBase {
 	
 	public void destroy(int id) throws SQLException {
 		String sql = "DELETE FROM albums WHERE id = ?";
-		
+		open();
 		PreparedStatement ps = co.prepareStatement(sql);
 		ps.setInt(1, id);
 		ps.executeUpdate();
+		close();
 	}
 	
-	public Album findById(int id) throws SQLException{
+	public Album find(int id) throws SQLException{
 		String sql = "SELECT * FROM albums WHERE id=?";
 		Album album = new Album();
 		PreparedStatement ps = co.prepareStatement(sql);
@@ -70,9 +72,6 @@ public class AlbumDAO extends DataBase {
 			album.setTitle(rs.getString("title"));
 			album.setDate(rs.getDate("date"));
 			albums.add(album);
-		}
-		for (Album album : albums) {
-			System.out.println(album.getTitle());
 		}
 		close();
 		return albums;
