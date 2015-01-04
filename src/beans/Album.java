@@ -3,6 +3,7 @@ package beans;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class Album {
@@ -10,6 +11,7 @@ public class Album {
 	private int id;
 	private String title;
 	private Date date;
+	private ArrayList<Photo> photos;
 	
 	public Album(String title, String date) throws ParseException {
 		this.title = title;
@@ -19,7 +21,7 @@ public class Album {
 	}
 	
 	public Album() {
-		// TODO Auto-generated constructor stub
+		this.photos = new ArrayList<Photo>();  
 	}
 
 	public int getId() {
@@ -46,7 +48,17 @@ public class Album {
 		java.sql.Date sqlDate = new java.sql.Date(df.parse(date).getTime());
 		this.date = sqlDate;
 	}
+
+	public ArrayList<Photo> getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(ArrayList<Photo> photos) {
+		this.photos = photos;
+	}
 	
-	
+	public void addPhoto(Photo photo) {
+		this.photos.add(photo);
+	}
 
 }

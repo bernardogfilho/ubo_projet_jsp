@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 import beans.Album;
+import beans.Photo;
 
 public class AlbumDAO extends DataBase {
 	
@@ -60,7 +61,19 @@ public class AlbumDAO extends DataBase {
 		album.setId(rs.getInt("id"));
 		album.setTitle(rs.getString("title"));
 		album.setDate(rs.getDate("date"));
-		close();
+		sql = "SELECT * FROM photos WHERE album_id=?";
+		ps = co.prepareStatement(sql);
+		ps.setString(1, id);
+		rs = ps.executeQuery();
+		while(rs.next()) {
+			Photo photo = new Photo();
+			photo.setId(rs.getInt("id"));
+			photo.setAlbum_id(Integer.parseInt(id));
+			photo.setDate(rs.getDate("date"));
+			photo.setTitle(rs.getString("title"));
+			photo.setSource(rs.getBlob("source"));
+			album.addPhoto(photo);
+		}
 		return album;
 	}
 	
