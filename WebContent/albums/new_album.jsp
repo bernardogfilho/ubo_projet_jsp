@@ -13,24 +13,17 @@
 	String date = request.getParameter("date");
 	
 	if (title != null && date != null) {
-		Album newAlbum = new Album(title, date);
-		System.out.println(newAlbum.getTitle());
+		album.setTitle(title);
+		album.setStringDate(date);
 		DataBase db = new DataBase();
 		db.open();
-		db.newAlbum(newAlbum);
+		db.newAlbum(album);
 		db.close();
 	}
 
 %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://cdn.foundation5.zurb.com/foundation.css"></link>
-</head>
-<body>
+<jsp:include page="/shared/header.jsp"></jsp:include>
 
 	<div class="row">
 		<div class="small-12 medium-6 small-centered columns">

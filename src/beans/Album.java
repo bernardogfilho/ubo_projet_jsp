@@ -40,6 +40,12 @@ public class Album {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+
+	public void setDate(String date) throws ParseException{
+		DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT, Locale.FRANCE);
+		java.sql.Date sqlDate = new java.sql.Date(df.parse(date).getTime());
+		this.date = sqlDate;
+	}
 	
 	
 
