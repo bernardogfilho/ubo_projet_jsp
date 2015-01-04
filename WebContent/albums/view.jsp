@@ -17,17 +17,10 @@
 <jsp:include page="/shared/header.jsp"></jsp:include>
 
 	<div class="row">
-		<ul class="small-block-grid-1 medium-block-grid-4">
-			<c:forEach items="${album.findAll()}" var="album">
-				<li class="text-center">
-					<a href="/ihm_jsp/albums/view.jsp?id=${album.id}">${ album.title }</a>
-					<br/>
-					<fmt:formatDate type="date" pattern="dd/MM/yyyy" value="${album.date}" />
-					<br/>
-					<a href="#">Editer</a> | <a href="/ihm_jsp/albums/destroy.jsp?id=${album.id}">Surpimer</a>
-				</li>
-			</c:forEach>
-		</ul>
+		<div class="small-12 columns">
+			<c:set var="album" value="${album.find(22)}"/>
+				${album.title}
+		</div>
 	</div>
 
 </body>

@@ -49,14 +49,18 @@ public class AlbumDAO extends DataBase {
 		close();
 	}
 	
-	public Album find(int id) throws SQLException{
+	public Album find(String id) throws SQLException{
 		String sql = "SELECT * FROM albums WHERE id=?";
 		Album album = new Album();
+		open();
 		PreparedStatement ps = co.prepareStatement(sql);
+		ps.setString(1, id);
 		ResultSet rs = ps.executeQuery();
+		rs.next();
 		album.setId(rs.getInt("id"));
 		album.setTitle(rs.getString("title"));
 		album.setDate(rs.getDate("date"));
+		close();
 		return album;
 	}
 	
