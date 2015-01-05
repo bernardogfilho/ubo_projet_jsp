@@ -16,7 +16,7 @@
 
 	<div class="row">
 		<div class="small-12 medium-6 small-centered columns">
-			<form method="post" action="create.jsp">
+			<form method="post" action="/ihm_jsp/createAlbum">
 				<label>Titre
 					<input type="text" name="title">
 				</label>

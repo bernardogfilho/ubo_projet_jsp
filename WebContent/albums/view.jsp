@@ -7,11 +7,8 @@
 <%@page import="org.apache.jasper.tagplugins.jstl.core.If"%>	
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <%@ page import="database.*" %>
 <%@ page import="beans.*" %>
-<%@page import="java.util.ArrayList"%>
-<% String id = request.getParameter("id"); %>
 <jsp:useBean id="album" class="database.AlbumDAO"></jsp:useBean>
 
 <jsp:include page="/shared/header.jsp"></jsp:include>
@@ -19,9 +16,24 @@
 
 	<div class="row">
 		<div class="small-12 columns">
-			${album.title}
+			<br/>
+			<h3>${album.title}</h3>
+			<i>Publié en <fmt:formatDate type="date" pattern="dd/MM/yyyy" value="${album.date}" /></i>
+			<br/><br/>	
+			<a class="button tiny" href="photos/new.jsp?album_id=${album.id}">Ajouter un photo</a>
 		</div>
 	</div>
-
+	<div class="row">
+		<div class="small-12 columns">
+			<ul class="small-block-grid-1 medium-block-grid-4">
+				<c:forEach items="${album.photos}" var="photo">
+					<li>
+						<img alt="" src="/ihm_jsp/images/${photo.id}">
+						${photo.title}
+					</li>
+				</c:forEach>
+			</ul>
+		</div>
+	</div>
 </body>
 </html>

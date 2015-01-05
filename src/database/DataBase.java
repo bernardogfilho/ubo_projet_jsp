@@ -42,6 +42,7 @@ public class DataBase {
 	}
 	
 	public void close() {
+		System.out.println("Connection closed.");
 		if (co != null) try {co.close();} catch (Exception e) {}
 	}
 

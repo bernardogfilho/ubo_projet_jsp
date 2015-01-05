@@ -42,9 +42,13 @@ public class AlbumDAO extends DataBase {
 	}
 	
 	public void destroy(int id) throws SQLException {
-		String sql = "DELETE FROM albums WHERE id = ?";
+		String sql = "DELETE FROM photos WHERE album_id=?";
 		open();
 		PreparedStatement ps = co.prepareStatement(sql);
+		ps.setInt(1, id);
+		ps.executeUpdate();
+		sql = "DELETE FROM albums WHERE id = ?";
+		ps = co.prepareStatement(sql);
 		ps.setInt(1, id);
 		ps.executeUpdate();
 		close();
@@ -68,10 +72,10 @@ public class AlbumDAO extends DataBase {
 		while(rs.next()) {
 			Photo photo = new Photo();
 			photo.setId(rs.getInt("id"));
-			photo.setAlbum_id(Integer.parseInt(id));
+			photo.setAlbumId(Integer.parseInt(id));
 			photo.setDate(rs.getDate("date"));
 			photo.setTitle(rs.getString("title"));
-			photo.setSource(rs.getBlob("source"));
+			photo.setSource(rs.getBinaryStream("source"));
 			album.addPhoto(photo);
 		}
 		return album;

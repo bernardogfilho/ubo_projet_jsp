@@ -1,14 +1,18 @@
 package beans;
 
+import java.io.InputStream;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.Locale;
 
 public class Photo {
 	
 	private int id;
 	private String title;
 	private Date date;
-	private java.sql.Blob source;
-	private int album_id;
+	private InputStream source;
+	private int albumId;
 	
 	public int getId() {
 		return id;
@@ -28,17 +32,24 @@ public class Photo {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public java.sql.Blob getSource() {
+	
+	public void setDate(String date) throws ParseException{
+		DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT, Locale.FRANCE);
+		java.sql.Date sqlDate = new java.sql.Date(df.parse(date).getTime());
+		this.date = sqlDate;
+	}
+	
+	public InputStream getSource() {
 		return source;
 	}
-	public void setSource(java.sql.Blob blob) {
-		this.source = blob;
+	public void setSource(InputStream source) {
+		this.source = source;
 	}
-	public int getAlbum_id() {
-		return album_id;
+	public int getAlbumId() {
+		return albumId;
 	}
-	public void setAlbum_id(int album_id) {
-		this.album_id = album_id;
+	public void setAlbumId(int album_id) {
+		this.albumId = album_id;
 	}
 	
 	
